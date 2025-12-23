@@ -1,0 +1,567 @@
+/* ===========================
+   ROOT STYLES & VARIABLES
+   =========================== */
+
+:root {
+  /* Light Mode Colors */
+  --bg-primary: #f5f7fa;
+  --bg-secondary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --accent-color: #7c3aed;
+  --accent-light: #ede9fe;
+  --success-color: #51cf66;
+  --error-color: #ff6b6b;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #f5f7fa;
+  --text-secondary: #b0b0b0;
+  --border-color: #404040;
+  --accent-light: #3d2e5c;
+}
+
+/* ===========================
+   GENERAL STYLES
+   =========================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+}
+
+/* ===========================
+   CONTAINER & LAYOUT
+   =========================== */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px 0;
+}
+
+/* ===========================
+   HEADER STYLES
+   =========================== */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--accent-light);
+  transform: scale(1.1);
+}
+
+/* ===========================
+   SEARCH SECTION
+   =========================== */
+
+.search-section {
+  margin-bottom: 40px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-btn {
+  padding: 12px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--accent-color);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #6d28d9;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===========================
+   LOADING STATE
+   =========================== */
+
+.loading-message {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 30px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  border: 2px solid var(--accent-light);
+}
+
+.loading-message:not(.loading-hidden) {
+  display: flex;
+}
+
+.loading-message p {
+  font-size: 1.1rem;
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+/* Spinner Animation */
+.spinner {
+  border: 4px solid var(--accent-light);
+  border-top: 4px solid var(--accent-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===========================
+   ERROR HANDLING
+   =========================== */
+
+.error-container {
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  background-color: #ffe0e0;
+  border-left: 4px solid var(--error-color);
+  border-radius: 4px;
+  color: #c41e3a;
+  font-weight: 500;
+  animation: slideDown 0.3s ease-out;
+}
+
+.error-hidden {
+  display: none;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   RESULTS CONTAINER
+   =========================== */
+
+.results-container {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.results-container.hidden {
+  display: none;
+}
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* ===========================
+   RESULT CARD
+   =========================== */
+
+.result-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-color);
+}
+
+.result-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 8px;
+}
+
+.result-artist {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.result-album {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* ===========================
+   LYRICS CONTAINER
+   =========================== */
+
+.lyrics-container {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.lyrics-container.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   SONG INFO CARD
+   =========================== */
+
+.song-info-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 30px;
+  border: 1px solid var(--border-color);
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-secondary) 100%);
+}
+
+.song-header {
+  margin-bottom: 20px;
+}
+
+.song-title {
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}
+
+.song-artist {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.song-album {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.btn-favorite,
+.btn-back {
+  padding: 10px 20px;
+  margin-right: 10px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-favorite {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-favorite:hover {
+  background-color: #6d28d9;
+  transform: translateY(-2px);
+}
+
+.btn-favorite.favorited {
+  background-color: var(--success-color);
+}
+
+.btn-back {
+  background-color: var(--text-secondary);
+  color: white;
+}
+
+.btn-back:hover {
+  background-color: #555555;
+}
+
+/* ===========================
+   LYRICS CARD
+   =========================== */
+
+.lyrics-card {
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.lyrics-content {
+  white-space: pre-wrap;
+  line-height: 2;
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-family: 'Courier New', monospace;
+}
+
+.no-lyrics {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 40px 20px;
+}
+
+/* ===========================
+   FAVORITES SECTION
+   =========================== */
+
+.favorites-section {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid var(--border-color);
+}
+
+.favorites-section.hidden {
+  display: none;
+}
+
+.favorites-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--accent-color);
+}
+
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.favorite-item {
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  padding: 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.favorite-item:hover {
+  border-color: var(--accent-color);
+  background-color: var(--accent-light);
+  transform: translateY(-3px);
+}
+
+.favorite-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+
+.favorite-artist {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.remove-favorite {
+  background: none;
+  border: none;
+  color: var(--error-color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.remove-favorite:hover {
+  transform: scale(1.2);
+}
+
+.clear-btn {
+  padding: 10px 20px;
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #e53e3e;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .header h1 {
+    font-size: 1.8rem;
+  }
+
+  .search-container {
+    flex-direction: column;
+  }
+
+  .search-input,
+  .search-btn {
+    width: 100%;
+  }
+
+  .results-list {
+    grid-template-columns: 1fr;
+  }
+
+  .song-title {
+    font-size: 1.5rem;
+  }
+
+  .song-info-card {
+    padding: 20px;
+  }
+
+  .lyrics-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .song-title {
+    font-size: 1.3rem;
+  }
+
+  .favorites-list {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-favorite,
+  .btn-back {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .lyrics-content {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+}

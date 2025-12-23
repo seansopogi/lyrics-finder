@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyrics Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Header Section -->
+    <header class="header">
+      <h1>🎵 Lyrics Finder</h1>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        🌙
+      </button>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Search Section -->
+      <section class="search-section">
+        <div class="search-container">
+          <input
+            type="text"
+            id="searchInput"
+            class="search-input"
+            placeholder="Search by song name or artist..."
+            autocomplete="off"
+          />
+          <button id="searchBtn" class="search-btn">Search</button>
+        </div>
+        <div id="loadingMessage" class="loading-message">
+          <div class="spinner"></div>
+          <p>Searching for lyrics...</p>
+        </div>
+      </section>
+
+      <!-- Error Container -->
+      <div id="errorContainer" class="error-container error-hidden"></div>
+
+      <!-- Search Results Container -->
+      <section id="resultsContainer" class="results-container hidden">
+        <!-- Results List -->
+        <div id="resultsList" class="results-list"></div>
+      </section>
+
+      <!-- Lyrics Display Container -->
+      <section id="lyricsContainer" class="lyrics-container hidden">
+        <!-- Song Info Card -->
+        <article class="song-info-card">
+          <div class="song-header">
+            <h2 id="songTitle" class="song-title"></h2>
+            <p id="songArtist" class="song-artist"></p>
+            <p id="songAlbum" class="song-album"></p>
+          </div>
+          <button id="addFavoriteBtn" class="btn-favorite">⭐ Add to Favorites</button>
+          <button id="backBtn" class="btn-back">← Back to Results</button>
+        </article>
+
+        <!-- Lyrics Display -->
+        <article class="lyrics-card">
+          <div id="lyricsContent" class="lyrics-content"></div>
+        </article>
+      </section>
+
+      <!-- Favorites Section -->
+      <section id="favoritesSection" class="favorites-section hidden">
+        <h3>⭐ Favorite Songs</h3>
+        <div id="favoritesList" class="favorites-list"></div>
+        <button id="clearFavorites" class="clear-btn">Clear Favorites</button>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
