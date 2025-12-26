@@ -1,4 +1,4 @@
-# 🎵 Lyrics Finder
+# 🎵 Lyrics Finder using LRCLIB API
 
 A modern lyrics search application powered by the free LRCLIB API. Find song lyrics instantly with a clean, intuitive interface. Built with vanilla HTML, CSS, and JavaScript.
 
@@ -238,3 +238,4 @@ This project is open source and available under the MIT License.
 ---
 
 **Find Your Lyrics Now!** 🎵✨
+
